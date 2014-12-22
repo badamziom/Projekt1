@@ -1,2 +1,2 @@
-Projekt1
+Proje1
 ========
