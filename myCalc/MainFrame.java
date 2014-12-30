@@ -18,6 +18,8 @@ public class MainFrame extends JFrame{
 	private OptionsPanel options;
 	private OperatorsPanel operatorsPanel;
 	private JButton submitButton;
+	
+	private  StringBuilder sb;
 
 	public MainFrame(String title) {
 		
@@ -29,6 +31,8 @@ public class MainFrame extends JFrame{
 		options = new OptionsPanel();
 		operatorsPanel = new OperatorsPanel();
 		submitButton = new JButton("Submit");
+		
+		sb = new StringBuilder();
 		
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -42,14 +46,16 @@ public class MainFrame extends JFrame{
 		}
 		
 		operatorsPanel.setCalculationListener(new CalculationListener() {
-			public void encodedCalc(char calculation,  boolean wasNumLast, boolean wasOperatorLast) {
+			public void encodedCalc(char calculation) {
 				calcArea.appendText(calculation);
+				sb.append(calculation);
 			}
 		});
 		
 		numberButtons.setCalculationListener(new CalculationListener() {
-			public void encodedCalc(char calculation,  boolean wasNumLast, boolean wasOperatorLast) {
+			public void encodedCalc(char calculation) {
 				calcArea.appendText(calculation);
+				sb.append(calculation);
 				
 			}
 		});
@@ -57,6 +63,10 @@ public class MainFrame extends JFrame{
 		submitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				calcArea.clrScr();
+				resultArea.clrScr();
+				DoWork dw = new DoWork();
+				resultArea.appendText(dw.calculate(sb.toString()).toString());
+				sb.delete(0, sb.length());
 			}
 		});
 		
