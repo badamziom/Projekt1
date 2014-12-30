@@ -27,4 +27,8 @@ public class ResultPanel extends JPanel {
 	public void appendText(String c) {
 		textArea.append(c);
 	}
+	
+	public void clrScr() {
+		textArea.setText(null);
+	}
 }
