@@ -1,25 +1,23 @@
 package myCalc;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
 
 public class DoWork {
 	
+	private LinkedList<Double> numbers;
 	private LinkedList<Character> operators;
-	private LinkedList<Character> charNumbers;
-	private LinkedList<Integer> numbers;
+	
 	private Set<Character> numSet;
 	private Set<Character> opsSet;
 	
-	private boolean swap = false;
-	private int lastIndex = 0;
-	
 	public DoWork() {
 		
+		numbers = new LinkedList<Double>();
 		operators = new LinkedList<Character>();
-		charNumbers = new LinkedList<Character>();
-		numbers = new LinkedList<Integer>();
 		
 		numSet = new HashSet<Character>();
 		numSet.add('1');
@@ -32,6 +30,7 @@ public class DoWork {
 		numSet.add('8');
 		numSet.add('9');
 		numSet.add('0');
+		numSet.add('.');
 		
 		opsSet = new HashSet<Character>();
 		opsSet.add('+');
@@ -42,54 +41,59 @@ public class DoWork {
 		opsSet.add('!');
 	}
 	
-	public void addOperator(char c) {
+	public BigDecimal calculate(String chain) {
 		
-		this.swap = true;
-		operators.add(c);
-	}
-	
-	public void addNumber(char c) {
+		BigDecimal result = BigDecimal.ZERO;
+		StringBuilder sb = new StringBuilder();
+		int x = 1;
 		
-		if (swap) {
-			StringBuilder sb = new StringBuilder();
-			for(int x = lastIndex; x < charNumbers.size(); x++) {
-				
-				if(numSet.contains(charNumbers.get(x))) {
-					sb.append(charNumbers.get(x));
-					
-				} else if(opsSet.contains(charNumbers.get(x))) {
-					numbers.add(Integer.parseInt(sb.toString()));
-					lastIndex = x;
-					break;
-				}
-			}
-		}
-		charNumbers.add(c);
-		this.swap = false;
-	}
-	
-	public void calculate () {
-		
-		long result = 0;
-		int firstNum = numbers.get(0);
-		for(int x = 0; x < operators.size(); x++) {
+		for(int i = 0; i < chain.length(); i++) {
 			
-			switch (operators.get(x)) {
-			case '+': {
-				if(x != 0) {
-					result += numbers.get(x+1);
-				} else {
-					result += firstNum + numbers.get(x);
+			if(numSet.contains(chain.charAt(i))) {
+				sb.append(chain.charAt(i));
+				if(i + 1 == chain.length()) {
+					numbers.add(Double.parseDouble(sb.toString()));
+					sb.delete(0, sb.length());
 				}
-			}
-			case '-': {
-				if(x != 0) {
-					result -= numbers.get(x+1);
-				} else {
-					result -= firstNum - numbers.get(x);
-				}
-			}
+			} else {
+				numbers.add(Double.parseDouble(sb.toString()));
+				operators.add(chain.charAt(i));
+				sb.delete(0, sb.length());
 			}
 		}
+		
+		result = BigDecimal.valueOf(numbers.get(0));
+		Boolean negate = false;
+		
+		for(char op : operators) {
+			switch(op) {
+				case '+': 
+					result = result.add(BigDecimal.valueOf(numbers.get(x)));
+					break;
+				case '-':
+					result = result.subtract(BigDecimal.valueOf(numbers.get(x)));
+					break;
+				case '*':
+					result = result.multiply(BigDecimal.valueOf(numbers.get(x)), MathContext.DECIMAL64);
+					break;
+				case '/':
+					result = result.divide(BigDecimal.valueOf(numbers.get(x)), MathContext.DECIMAL64);
+					break;
+				case '%':
+					result = result.remainder(BigDecimal.valueOf(numbers.get(x)), MathContext.DECIMAL64);
+					break;
+				case '!':
+					negate = !negate;
+					break;
+				default :
+					break;
+			}
+			x++;
+		}
+		if(negate) {
+			result.negate();
+		}
+		result.stripTrailingZeros();
+		return result;
 	}
 }
