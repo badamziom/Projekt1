@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 public class NumberPanel extends JPanel implements ActionListener {
 	
 	private CalculationListener calcListener;
-	private ArrayList<Character> numbers;
 	
 	/////////ROW 1
 	private JButton one;
@@ -34,8 +33,6 @@ public class NumberPanel extends JPanel implements ActionListener {
 	private JButton point;
 	
 	public NumberPanel() {
-		
-		numbers = new ArrayList<Character>();
 		
 		/////////ROW 1
 		one 	= new JButton("1");
@@ -135,48 +132,37 @@ public class NumberPanel extends JPanel implements ActionListener {
 		if (calcListener != null) {
 			
 			if (clicked == one) {
-				numbers.add('1');
-				calcListener.encodedCalc('1', true, false);
+				calcListener.encodedCalc('1');
 				
 			} else if (clicked == two) {
-				numbers.add('2');
-				calcListener.encodedCalc('2', true, false);
+				calcListener.encodedCalc('2');
 				
 			} else if (clicked == three) {
-				numbers.add('3');
-				calcListener.encodedCalc('3', true, false);
+				calcListener.encodedCalc('3');
 				
 			} else if (clicked == four) {
-				numbers.add('4');
-				calcListener.encodedCalc('4', true, false);
+				calcListener.encodedCalc('4');
 				
 			} else if (clicked == five) {
-				numbers.add('5');
-				calcListener.encodedCalc('5', true, false);
+				calcListener.encodedCalc('5');
 				
 			} else if (clicked == six) {
-				numbers.add('6');
-				calcListener.encodedCalc('6', true, false);
+				calcListener.encodedCalc('6');
 				
 			} else if (clicked == seven) {
-				numbers.add('7');
-				calcListener.encodedCalc('7', true, false);
+				calcListener.encodedCalc('7');
 				
 			} else if (clicked == eight) {
-				numbers.add('8');
-				calcListener.encodedCalc('8', true, false);
+				calcListener.encodedCalc('8');
 				
 			} else if (clicked == nine) {
-				numbers.add('9');
-				calcListener.encodedCalc('9', true, false);
+				calcListener.encodedCalc('9');
 				
 			} else if (clicked == zero) {
-				numbers.add('0');
-				calcListener.encodedCalc('0', true, false);
+				calcListener.encodedCalc('0');
 				
 			} else if (clicked == point) {
-				numbers.add('.');
-				calcListener.encodedCalc('.', true, false);
+				calcListener.encodedCalc('.');
 			}
 		}
 	}
