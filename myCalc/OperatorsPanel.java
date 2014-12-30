@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 public class OperatorsPanel extends JPanel implements ActionListener{
 	
 	private CalculationListener calcListener;
-	private ArrayList<Character> operators;
 	
 	private JButton add;
 	private JButton substract;
@@ -23,8 +22,6 @@ public class OperatorsPanel extends JPanel implements ActionListener{
 	private JButton minus;
 	
 	public OperatorsPanel() {
-		
-		operators = new ArrayList<Character>();
 		
 		add 		= new JButton("+");
 		substract	= new JButton("-");
@@ -88,28 +85,22 @@ public class OperatorsPanel extends JPanel implements ActionListener{
 		if (calcListener != null) {
 			
 			if (clicked == add) {
-				operators.add('+');
-				calcListener.encodedCalc('+', false, true);
+				calcListener.encodedCalc('+');
 				
 			} else if (clicked == substract) {
-				operators.add('-');
-				calcListener.encodedCalc('-', false, true);
+				calcListener.encodedCalc('-');
 				
 			} else if (clicked == multiply) {
-				operators.add('*');
-				calcListener.encodedCalc('*', false, true);
+				calcListener.encodedCalc('*');
 				
 			} else if (clicked == divide) {
-				operators.add('/');
-				calcListener.encodedCalc('/', false, true);
+				calcListener.encodedCalc('/');
 				
 			} else if (clicked == mod) {
-				operators.add('%');
-				calcListener.encodedCalc('%', false, true);
+				calcListener.encodedCalc('%');
 				
 			} else if (clicked == minus) {
-				operators.add('!');
-				calcListener.encodedCalc('!', false, true);
+				calcListener.encodedCalc('!');
 			}
 		}
 	}
