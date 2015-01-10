@@ -1,4 +1,4 @@
-package myCalc;
+package myCalc.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -8,6 +8,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class ResultPanel extends JPanel {
+
+	private static final long serialVersionUID = 5822025834028765880L;
 	
 	private JTextArea textArea;
 	
