@@ -1,16 +1,19 @@
-package myCalc;
+package myCalc.gui;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import myCalc.interfaces.CalculationListener;
+
 public class NumberPanel extends JPanel implements ActionListener {
 	
+	private static final long serialVersionUID = 2555302672523422797L;
+
 	private CalculationListener calcListener;
 	
 	/////////ROW 1
@@ -132,37 +135,37 @@ public class NumberPanel extends JPanel implements ActionListener {
 		if (calcListener != null) {
 			
 			if (clicked == one) {
-				calcListener.encodedCalc('1');
+				calcListener.encodedCalc('1', false);
 				
 			} else if (clicked == two) {
-				calcListener.encodedCalc('2');
+				calcListener.encodedCalc('2', false);
 				
 			} else if (clicked == three) {
-				calcListener.encodedCalc('3');
+				calcListener.encodedCalc('3', false);
 				
 			} else if (clicked == four) {
-				calcListener.encodedCalc('4');
+				calcListener.encodedCalc('4', false);
 				
 			} else if (clicked == five) {
-				calcListener.encodedCalc('5');
+				calcListener.encodedCalc('5', false);
 				
 			} else if (clicked == six) {
-				calcListener.encodedCalc('6');
+				calcListener.encodedCalc('6', false);
 				
 			} else if (clicked == seven) {
-				calcListener.encodedCalc('7');
+				calcListener.encodedCalc('7', false);
 				
 			} else if (clicked == eight) {
-				calcListener.encodedCalc('8');
+				calcListener.encodedCalc('8', false);
 				
 			} else if (clicked == nine) {
-				calcListener.encodedCalc('9');
+				calcListener.encodedCalc('9', false);
 				
 			} else if (clicked == zero) {
-				calcListener.encodedCalc('0');
+				calcListener.encodedCalc('0', false);
 				
 			} else if (clicked == point) {
-				calcListener.encodedCalc('.');
+				calcListener.encodedCalc('.', false);
 			}
 		}
 	}
