@@ -1,17 +1,20 @@
-package myCalc;
+package myCalc.gui;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import myCalc.interfaces.CalculationListener;
+
 public class OperatorsPanel extends JPanel implements ActionListener{
 	
+	private static final long serialVersionUID = -2056623716068129959L;
+
 	private CalculationListener calcListener;
 	
 	private JButton add;
@@ -85,22 +88,22 @@ public class OperatorsPanel extends JPanel implements ActionListener{
 		if (calcListener != null) {
 			
 			if (clicked == add) {
-				calcListener.encodedCalc('+');
+				calcListener.encodedCalc('+', true);
 				
 			} else if (clicked == substract) {
-				calcListener.encodedCalc('-');
+				calcListener.encodedCalc('-', true);
 				
 			} else if (clicked == multiply) {
-				calcListener.encodedCalc('*');
+				calcListener.encodedCalc('*', true);
 				
 			} else if (clicked == divide) {
-				calcListener.encodedCalc('/');
+				calcListener.encodedCalc('/', true);
 				
 			} else if (clicked == mod) {
-				calcListener.encodedCalc('%');
+				calcListener.encodedCalc('%', true);
 				
 			} else if (clicked == minus) {
-				calcListener.encodedCalc('!');
+				calcListener.encodedCalc('!', true);
 			}
 		}
 	}
