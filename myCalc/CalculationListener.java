@@ -1,5 +1,5 @@
-package myCalc;
+package myCalc.interfaces;
 
 public interface CalculationListener {
-	public void encodedCalc(char calculation);
+	public void encodedCalc(char calculation, boolean wasOperatorLast);
 }
