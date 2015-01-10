@@ -1,4 +1,4 @@
-package myCalc;
+package myCalc.gui;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -7,6 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class OptionsPanel extends JPanel {
+
+	private static final long serialVersionUID = 4444387810876942859L;
 	
 	private JButton save;
 	
