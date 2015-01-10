@@ -4,6 +4,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.LinkedList;
 
@@ -14,6 +15,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 
 import myCalc.calculations.DoWork;
 import myCalc.interfaces.CalculationListener;
+import myCalc.saving.SaveToResultCommunication;
 
 public class MainFrame extends JFrame{
 	
@@ -25,6 +27,10 @@ public class MainFrame extends JFrame{
 	private OptionsPanel options;
 	private OperatorsPanel operatorsPanel;
 	private JButton submitButton;
+	
+	private File file;
+	
+	private SaveToResultCommunication saveToResComm;
 	
 	private StringBuilder sb;
 	private StringBuilder sb2;
@@ -53,6 +59,10 @@ public class MainFrame extends JFrame{
 		operatorsPanel = new OperatorsPanel();
 		submitButton = new JButton("Submit");
 		
+		file = new File("Wynik.txt");
+		
+		saveToResComm = new SaveToResultCommunication(file);
+		
 		currentResult = BigDecimal.ZERO;
 		currentResult2 = BigDecimal.ZERO;
 		
@@ -78,7 +88,11 @@ public class MainFrame extends JFrame{
 			System.out.println("Nimbus L&F not found");
 		}
 		
+		options.setStringListener(saveToResComm);
+		resultArea.setStringListener(saveToResComm);
+		
 		operatorsPanel.setCalculationListener(new CalculationListener() {
+			
 			public void encodedCalc(char calculation, boolean wasOperatorLast) {
 				
 				sb2.delete(0, sb2.length());
@@ -131,6 +145,7 @@ public class MainFrame extends JFrame{
 		});
 		
 		numberButtons.setCalculationListener(new CalculationListener() {
+			
 			public void encodedCalc(char calculation, boolean wasOperatorLast) {
 				
 				if(!wasOperatorLast) {
@@ -160,6 +175,7 @@ public class MainFrame extends JFrame{
 		});
 		
 		submitButton.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				
 				calcArea.clrScr();
