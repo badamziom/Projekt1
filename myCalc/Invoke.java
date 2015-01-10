@@ -1,6 +1,8 @@
-package myCalc;
+package myCalc.invoke;
 
 import javax.swing.SwingUtilities;
+
+import myCalc.gui.MainFrame;
 
 public class Invoke {
 
