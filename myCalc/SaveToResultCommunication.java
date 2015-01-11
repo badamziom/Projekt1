@@ -52,4 +52,8 @@ public class SaveToResultCommunication implements StringListener{
 	public void setText(String text) {
 		this.text = text;
 	}
+
+	public String getText() {
+		return this.text;
+	}
 }
