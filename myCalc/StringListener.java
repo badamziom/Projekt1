@@ -5,4 +5,5 @@ public interface StringListener {
 	public void saveToFile(String text);
 	public void setText(String text);
 	public boolean isItReady();
+	public String getText();
 }
