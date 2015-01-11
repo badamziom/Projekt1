@@ -74,9 +74,9 @@ public class NumberPanel extends JPanel implements ActionListener {
 		setLayout(new GridBagLayout());
 		GridBagConstraints gc = new GridBagConstraints();
 		
-		gc.weightx = 0;
-		gc.weighty = 0;
-		gc.fill = GridBagConstraints.NONE;
+		gc.weightx = 1;
+		gc.weighty = 1;
+		gc.fill = GridBagConstraints.BOTH;
 		
 		/////////ROW 1
 		gc.gridx = 0;
@@ -123,7 +123,8 @@ public class NumberPanel extends JPanel implements ActionListener {
 		gc.gridy = 3;
 		add(zero, gc);
 		
-		gc.gridx = 1;
+		gc.gridwidth = 1;
+		gc.gridx = 2;
 		gc.gridy = 3;
 		add(point, gc);
 	}
