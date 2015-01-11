@@ -17,6 +17,7 @@ import myCalc.calculations.DoWork;
 import myCalc.interfaces.CalculationListener;
 import myCalc.saving.SaveToResultCommunication;
 
+
 public class MainFrame extends JFrame{
 	
 	private static final long serialVersionUID = -7220987384328102003L;
@@ -74,7 +75,6 @@ public class MainFrame extends JFrame{
 		wasOL1 = false;
 		wasOL2 = false;
 		firstNum = true;
-		
 		listIterator = 1;
 		
 		try {
@@ -103,43 +103,44 @@ public class MainFrame extends JFrame{
 				if(wasOperatorLast) {
 					wasOL1 = true;
 				}
-				if(wasOL1 && !wasOL2) {
-					calcArea.appendText(calculation);
-					sb.append(calculation);
-				}
 				if(wasOL1 && wasOL2) {
-					calcArea.deleteLastCharacter();
-					sb.deleteCharAt(sb.length()-1);
 					calcArea.appendText(calculation);
 					sb.append(calculation);
-				}
-				
-				if(!firstNum) {
-					
-					DoWork dw = new DoWork();
-					currentOperator = nextOperator;
-					
+					calcArea.deleteLastCharacter();	
 					nextOperator = sb.charAt(sb.length() - 1);
-					sb.deleteCharAt(sb.length() - 1);
-
-					numList.add(new BigDecimal(sb.toString()));
-					sb.delete(0, sb.length());
-					
-					currentResult = dw.calculate(currentResult, numList.get(listIterator), currentOperator);
-					listIterator++;
-					
-					resultArea.clrScr();
-					resultArea.appendText(currentResult.toString());
+					sb.deleteCharAt(sb.length()-1);
 				}
-				else {
-					nextOperator = sb.charAt(sb.length() - 1);
-					sb.deleteCharAt(sb.length() - 1);
-
-					numList.add(new BigDecimal(sb.toString()));
+				if(wasOL1 && !wasOL2) {
 					
-					currentResult = new BigDecimal(sb.toString());
-					sb.delete(0, sb.length());
-					firstNum = false;
+					calcArea.appendText(calculation);
+					sb.append(calculation);
+					if (!firstNum) {
+
+						DoWork dw = new DoWork();
+						currentOperator = nextOperator;
+
+						nextOperator = sb.charAt(sb.length() - 1);
+						sb.deleteCharAt(sb.length() - 1);
+
+						numList.add(new BigDecimal(sb.toString()));
+						sb.delete(0, sb.length());
+
+						currentResult = dw.calculate(currentResult, numList.get(listIterator), currentOperator);
+						listIterator++;
+
+						resultArea.clrScr();
+						resultArea.appendText(currentResult.toString());
+						
+					} else {
+						nextOperator = sb.charAt(sb.length() - 1);
+						sb.deleteCharAt(sb.length() - 1);
+
+						numList.add(new BigDecimal(sb.toString()));
+
+						currentResult = new BigDecimal(sb.toString());
+						sb.delete(0, sb.length());
+						firstNum = false;
+					}
 				}
 			}
 		});
