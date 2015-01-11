@@ -1,13 +1,11 @@
-package myCalc;
+package myCalc.calculations;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Set;
 
 public class DoWork {
 
+<<<<<<< HEAD
     private LinkedList<Double> numbers;
     private LinkedList<Character> operators;
 
@@ -96,4 +94,25 @@ public class DoWork {
         result.stripTrailingZeros();
         return result;
     }
+=======
+	public BigDecimal calculate(BigDecimal num1, BigDecimal num2, char op) {
+		
+		switch(op) {
+		case '+': 
+			return num1.add(num2);
+		case '-':
+			return num1.subtract(num2);
+		case '*':
+			return num1.multiply(num2, MathContext.DECIMAL64);
+		case '/':
+			return num1.divide(num2, MathContext.DECIMAL64);
+		case '%':
+			return num1.remainder(num2, MathContext.DECIMAL64);
+		case '!':
+			return num1.add(num2).negate();
+		default :
+			return BigDecimal.ZERO;
+		}
+	}
+>>>>>>> master
 }

@@ -1,4 +1,4 @@
-package myCalc;
+package myCalc.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -8,6 +8,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class TextPanel extends JPanel {
+
+	private static final long serialVersionUID = 5307792467600369271L;
 	
 	private JTextArea textArea;
 	
@@ -37,5 +39,14 @@ public class TextPanel extends JPanel {
 	
 	public void clrScr() {
 		textArea.setText(null);
+	}
+	
+	public void deleteLastCharacter() {
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(textArea.getText());
+		sb.deleteCharAt(sb.length()-2);	
+		textArea.setText(sb.toString());
+		sb.delete(0, sb.length());
 	}
 }

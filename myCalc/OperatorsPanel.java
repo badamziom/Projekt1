@@ -1,17 +1,19 @@
-package myCalc;
+package myCalc.gui;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import myCalc.interfaces.CalculationListener;
+
 public class OperatorsPanel extends JPanel implements ActionListener{
 	
+	private static final long serialVersionUID = -2056623716068129959L;
+
 	private CalculationListener calcListener;
 	
 	private JButton add;
@@ -40,41 +42,41 @@ public class OperatorsPanel extends JPanel implements ActionListener{
 		setLayout(new GridBagLayout());
 		GridBagConstraints gc = new GridBagConstraints();
 
-		gc.weightx = 0;
-		gc.weighty = 0;
-		gc.fill = GridBagConstraints.NONE;
+		gc.weightx = 1;
+		gc.weighty = 1;
+		gc.fill = GridBagConstraints.BOTH;
 		
 		/////////ROW 1
 		gc.gridx = 0;
 		gc.gridy = 0;
-		gc.insets = new Insets(-26, 0, 0, 0);
+		//gc.insets = new Insets(-26, 0, 0, 0);
 		add(add, gc);
 		
 		gc.gridx = 1;
 		gc.gridy = 0;
-		gc.insets = new Insets(-26, 8, 0, 0);
+		//gc.insets = new Insets(-26, 8, 0, 0);
 		add(substract, gc);
 		
 		/////////ROW 2
 		gc.gridx = 0;
 		gc.gridy = 1;
-		gc.insets = new Insets(0, -2, 0, 0);
+		//gc.insets = new Insets(0, -2, 0, 0);
 		add(multiply, gc);
 		
 		gc.gridx = 1;
 		gc.gridy = 1;
-		gc.insets = new Insets(0, 9, 0, 0);
+		//gc.insets = new Insets(0, 9, 0, 0);
 		add(divide, gc);
 		
 		/////////ROW 3
 		gc.gridx = 0;
 		gc.gridy = 2;
-		gc.insets = new Insets(0, 1, 0, 0);
+		//gc.insets = new Insets(0, 1, 0, 0);
 		add(mod, gc);
 		
 		gc.gridx = 1;
 		gc.gridy = 2;
-		gc.insets = new Insets(0, 9, 0, 0);
+		//gc.insets = new Insets(0, 9, 0, 0);
 		add(minus, gc);
 	}
 
@@ -85,22 +87,22 @@ public class OperatorsPanel extends JPanel implements ActionListener{
 		if (calcListener != null) {
 			
 			if (clicked == add) {
-				calcListener.encodedCalc('+');
+				calcListener.encodedCalc('+', true);
 				
 			} else if (clicked == substract) {
-				calcListener.encodedCalc('-');
+				calcListener.encodedCalc('-', true);
 				
 			} else if (clicked == multiply) {
-				calcListener.encodedCalc('*');
+				calcListener.encodedCalc('*', true);
 				
 			} else if (clicked == divide) {
-				calcListener.encodedCalc('/');
+				calcListener.encodedCalc('/', true);
 				
 			} else if (clicked == mod) {
-				calcListener.encodedCalc('%');
+				calcListener.encodedCalc('%', true);
 				
 			} else if (clicked == minus) {
-				calcListener.encodedCalc('!');
+				calcListener.encodedCalc('!', true);
 			}
 		}
 	}
