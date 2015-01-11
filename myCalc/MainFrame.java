@@ -197,25 +197,28 @@ public class MainFrame extends JFrame{
 		
 		gc.weightx = 1;
 		gc.weighty = 1;
-		gc.fill = GridBagConstraints.HORIZONTAL;
+		gc.fill = GridBagConstraints.BOTH;
 		
 		/////////ROW 1
 		gc.gridwidth = 2;
+		gc.gridheight = 3;
 		gc.gridx = 0;
 		gc.gridy = 0; 
-		gc.ipady = 83;
+		//gc.ipady = 83;
 		gc.anchor = GridBagConstraints.NORTH;
 		add(calcArea, gc);
 		
 		/////////ROW 2
-		gc.ipady = 5;
+		gc.weighty = 0.25;
+		gc.gridheight = 1;
+		//gc.ipady = 5;
 		gc.gridx = 0;
-		gc.gridy = 1;
+		gc.gridy = 3;
 		add(resultArea, gc);
 		
 		/////////ROW 3
 		gc.gridx = 0;
-		gc.gridy = 2;
+		gc.gridy = 4;
 		add(submitButton, gc);
 		
 		/////////ROW 4
@@ -223,17 +226,17 @@ public class MainFrame extends JFrame{
 		gc.gridwidth = 1;
 		gc.fill = GridBagConstraints.BOTH;
 		gc.gridx = 0;
-		gc.gridy = 3;
+		gc.gridy = 5;
 		add(numberButtons, gc);
 		
 		gc.gridx = 1;
-		gc.gridy = 3;
+		gc.gridy = 5;
 		add(operatorsPanel, gc);
 		
 		/////////ROW 5
 		gc.gridwidth = 2;
 		gc.gridx = 0;
-		gc.gridy = 4;
+		gc.gridy = 6;
 		add(options, gc);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
