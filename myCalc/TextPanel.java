@@ -45,7 +45,7 @@ public class TextPanel extends JPanel {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append(textArea.getText());
-		sb.deleteCharAt(sb.length()-1);
+		sb.deleteCharAt(sb.length()-2);	
 		textArea.setText(sb.toString());
 		sb.delete(0, sb.length());
 	}
